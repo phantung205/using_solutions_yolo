@@ -55,7 +55,7 @@ def main():
                                 label_name = os.path.splitext(img["file_name"])[0] + ".txt"
                                 path_labels = os.path.join(dir_vals,label_name)
                                 with open(path_labels, 'a') as file_text:
-                                    file_text.write("{} {:.6f} {:.6f} {:.6f} {:.6f}\n".format(anno["category_id"]-1,x_ct,y_ct,w,h))
+                                    file_text.write("{} {:.6f} {:.6f} {:.6f} {:.6f}\n".format(anno["category_id"],x_ct,y_ct,w,h))
         # name image
         image_names = {
             os.path.splitext(f)[0]

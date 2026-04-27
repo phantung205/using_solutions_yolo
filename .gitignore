@@ -12,9 +12,15 @@ env/
 
 # IDE
 .idea/
+.vscode/
 
-#data
-data/
+# Data & Output (QUAN TRỌNG)
+data/processed/
+data/raw/
+result/
 
-#model
+
+# Model Weights
+weights/
 *.pt
+*.onnx

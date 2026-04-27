@@ -1,0 +1,12 @@
+path: C:/python/deeplearning_advanced_computer_vision/detector_vehicle/data/processed
+train: images/train # train images (relative to 'path') 4 images
+val: images/valid # val images (relative to 'path') 4 images
+
+# Classes
+names:
+  0: vehicles
+  1: bicycle
+  2: bus
+  3: car
+  4: motorbike
+  5: truck
