@@ -1,5 +1,4 @@
-#path: ../data/processed  # dùng train ngoài mặc định
-path: work/data/processed   # dùng train trong docker
+path: data/processed
 train: images/train
 val: images/valid
 

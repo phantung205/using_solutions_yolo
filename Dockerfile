@@ -1,4 +1,7 @@
-FROM ubuntu:latest
-LABEL authors="ASUS"
+FROM ultralytics/ultralytics:latest
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /work
+
+COPY src ./src
+COPY configs ./configs
+COPY vehicle.yaml ./vehicle.yaml

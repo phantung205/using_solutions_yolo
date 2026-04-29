@@ -2,7 +2,7 @@
 
 #path model
 model: weights/yolov8n.pt  # train lại đổi model thành cái cuối là last.pt
-data: configs/vehicle.yaml
+data: vehicle.yaml
 project: result/
 name: traffic_detector
 

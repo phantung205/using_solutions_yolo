@@ -33,7 +33,7 @@ def train(args):
         hyp_config = yaml.safe_load(file)
 
     # lấy ra đường dẫn file config data mặc định  nếu ko có gán cứng configs/vehicle.yaml
-    hyp_config["data"] = os.path.join(config.root_path,hyp_config.get('data', 'configs/vehicle.yaml'))
+    hyp_config["data"] = os.path.join(config.root_path,hyp_config.get('data', 'vehicle.yaml'))
 
     if "project" in hyp_config:
         hyp_config["project"] = os.path.join(config.root_path, hyp_config["project"])
