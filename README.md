@@ -25,7 +25,9 @@ tại các camera và sử dụng các giải pháp có sẵn của yolo
 ### 2.1 trong quá trình train
 ![Tensorboard result](data/img.png)
 
-### 2.2 một số kêt quả của sử dụng giải pháp
+### 2.2 một số kết quả của sử dụng giải pháp
+
+https://github.com/user-attachments/assets/cf30c934-3bfc-4ec2-99f6-cc6968c5af96
 
 
 ---
