@@ -28,6 +28,10 @@ tại các camera và sử dụng các giải pháp có sẵn của yolo
 ### 2.2 một số kêt quả của sử dụng giải pháp
 
 
+
+https://github.com/user-attachments/assets/3a15fc6c-e9e8-47fc-ba26-5f3a91972bdc
+
+
 ---
 
 ## 3. Cấu trúc thư mục
