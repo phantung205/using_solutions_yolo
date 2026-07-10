@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>predict</title>
+</head>
+<body>
+  <h1>phát diện đối tượng xe cộ trong ảnh video. sử dụng các giải pháp yolo và sahi</h1>
+
+  <form action="/predict" enctype="multipart/form-data" method="post">
+    <h3>chọn video hoặc ảnh</h3>
+    <div>
+      <input name="file" type="file"
+      accept=".jpg,.jpeg,.png,.bmp,.mp4,.avi,.mov,.mkv" required>
+    </div>
+    <hr>
+    <h3>chọn giải pháp muốn dùng </h3>
+    <div>
+      <input type="radio" id="base" name="solution" value="base">
+      <label for="base">sử dụng dự đoán bình thường</label>
+      <input type="radio" id="sahi" name="solution" value="sahi" required>
+      <label for="sahi">sử dụng dự đoán với sahi</label>
+      <input type="radio" id="speed" name="solution" value="speed">
+      <label for="speed">sử dụng dự đoán với đo tốc độ xe</label>
+      <input type="radio" id="heatmap" name="solution" value="heatmap">
+      <label for="heatmap">sử dụng dự đoán với heatmap</label>
+      <input type="radio" id="counting" name="solution" value="counting">
+      <label for="counting">sử dụng dự đoán với đếm số lượng xe trong một vùng</label>
+      <input type="radio" id="counting_region" name="solution" value="counting_region">
+      <label for="counting_region">sử dụng dự đoán với đếm số lượng xe trên các làn đường</label>
+    </div>
+    <hr>
+    <button type="submit">Dự đoán</button>
+  </form>
+
+  {% if result %}
+    <hr>
+    <h3>Kết quả dự đoán</h3>
+    {% if result.endswith(('.jpg', '.jpeg', '.png', '.bmp')) %}
+      <img
+          src="{{ url_for('static', filename=result) }}"
+          width="700"
+          alt="Prediction Result">
+
+    {% elif result.endswith(('.mp4', '.avi', '.mov', '.mkv')) %}
+      <video width="700" controls>
+          <source src="{{ url_for('static', filename=result) }}" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ video.
+      </video>
+    {% endif %}
+  {% endif %}
+
+</body>
+</html>

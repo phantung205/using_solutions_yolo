@@ -14,9 +14,9 @@ def get_args():
     return args
 
 def predict_image(image_path , model):
-    image = cv2.imread(image_path)
+    # image = cv2.imread(image_path)
 
-    results = model(image)
+    results = model(image_path)
 
     annotated_image = results[0].plot()
 
@@ -71,14 +71,14 @@ def main():
     # load model
     model = YOLO(args.checkpoint)
 
-    # predict image
+    # predict_base image
     if args.image_path is not None:
         if not os.path.exists(args.image_path):
             print("ko tìm thấy ảnh ")
             return
         predict_image(args.image_path,model)
 
-    # predict video
+    # predict_base video
     if args.video_path is not None:
         if not os.path.exists(args.video_path):
             print("ko tìm thấy ảnh ")

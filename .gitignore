@@ -18,6 +18,8 @@ env/
 data/processed/
 data/raw/
 result/
+static/uploads/
+static/results/
 
 
 # Model Weights
