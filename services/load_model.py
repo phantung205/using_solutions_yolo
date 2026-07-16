@@ -1,15 +1,9 @@
 from deploy import load_model_yolo
 
-yolo_model = None
-sahi_model = None
+def load_models(checkpoint):
 
-def load_models(checkpoints):
-    global yolo_model, sahi_model
+    base_model = load_model_yolo.load_base_model(checkpoint)
+    sahi_model = load_model_yolo.load_sahi_model(checkpoint)
 
-    if yolo_model is None:
-        yolo_model = load_model_yolo.load_model_base(checkpoints)
 
-    if sahi_model is None:
-        sahi_model = load_model_yolo.load_model_sahi(checkpoints)
-
-    return yolo_model, sahi_model
+    return base_model, sahi_model

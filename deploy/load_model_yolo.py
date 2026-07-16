@@ -1,28 +1,32 @@
 from ultralytics import YOLO
 from sahi import AutoDetectionModel
 
-model_base = None
-model_sahi = None
-
-def load_model_base(checkpoint):
-    global model_base
-
-    if model_base is None:
-        model_base = YOLO(checkpoint)
-
-    return model_base
+base_model = None
+sahi_model = None
 
 
 
-def load_model_sahi(checkpoint):
-    global model_sahi
+def load_base_model(checkpoint):
+    global base_model
 
-    if model_sahi is None:
-        model_sahi = AutoDetectionModel.from_pretrained(
+    if base_model is None:
+        base_model = YOLO(checkpoint)
+
+    return base_model
+
+
+def load_sahi_model(checkpoint):
+    global sahi_model
+
+    if sahi_model is None:
+        sahi_model = AutoDetectionModel.from_pretrained(
             model_type="ultralytics",
             model_path=checkpoint,
             confidence_threshold=0.7,
             device="cuda:0"
         )
 
-    return model_sahi
+    return sahi_model
+
+
+

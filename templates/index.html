@@ -33,6 +33,12 @@
     <button type="submit">Dự đoán</button>
   </form>
 
+  {% if error %}
+    <hr>
+    <p style="color:red;">{{error}}</p>
+    <hr>
+  {% endif %}
+
   {% if result %}
     <hr>
     <h3>Kết quả dự đoán</h3>
