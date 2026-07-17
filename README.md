@@ -1,7 +1,7 @@
 # Detect Vehicle (Using the YOLO object detection model and YOLO's solution.)
 
 Ứng dụng học sâu (Deep learning) vào bài toán phạt hiện đối tượng đi là xe cộ trong thời gian thực tế 
-tại các camera và sử dụng các giải pháp có sẵn của yolo 
+tại các camera và sử dụng các giải pháp có sẵn của yolo .tích hợp vào wed, sử dụng flask 
 
 ---
 
@@ -27,9 +27,11 @@ tại các camera và sử dụng các giải pháp có sẵn của yolo
 
 ### 2.2 một số kêt quả của sử dụng giải pháp
 
-
-
 https://github.com/user-attachments/assets/3a15fc6c-e9e8-47fc-ba26-5f3a91972bdc
+
+### 2.3 hình ảnh giao diện wed
+
+![Interface wed](data/img_1.png)
 
 
 ---
@@ -52,12 +54,21 @@ helmet_detection/
 │   │   ├── train
 │   │   └── valid
 │   └── test
+├── deploy
 ├── result
-│   ├── predict
-│   ├── solution
+│   ├── predict_base
+│   ├── predict_solution
 │   └── traffic_detector
 │       └── weights
+├── routes
+├── services
 ├── src
+├── static
+│   ├── results
+│   └── uploads
+├── templates
+├── using_sahi
+├── using_solution_yolo
 └── weights
 ```
 
@@ -72,14 +83,14 @@ helmet_detection/
 
 
 ### 4.2 Cách dùng dữ liệu
-1.Đặt vào thư mục:
+### 1.Đặt vào thư mục:
 ```text
 data/raw
       ├── test
       ├── train
       └── valid
 ```
-2. chia dữ liệu thành đùng dữ liệu đang cần
+### 2. chia dữ liệu thành đùng dữ liệu đang cần
 ```bash
 python -m src.prepare_data
 ```
@@ -137,30 +148,43 @@ python -m src.train
 result/
 ```
 
-## 8. chạy docker file
+---
 
+## 8. chạy docker file
+### 1. build docker image
 ```bash
 docker build -t vehicle .
+```
 
+### 2. vào trong docker image
+```bash
 docker run -it --rm --gpus all -v ${PWD}/data/:/work/data  -v ${PWD}/result:/work/result  vehicle  bash
 ```
-sau khi vào trong docker containner chạy lệnh để train model trong docker:
+
+- sau khi vào trong docker containner chạy lệnh để train model trong docker:
 ```bash
 python -m src.train 
 ```
 
-## 9. xem quá trình train và triển khai test thử
+### 3. chạy luôn wed ko cần vào docker, nếu đã có checkpoint train rồi
+```bash
+docker run --rm -p 5000:5000 --gpus all -v ${PWD}/result/traffic_detector:/work/result/traffic_detector  -v ${PWD}/static:/work/static  vehicle  
+```
 
-1. xem quá trình train
+---
+
+## 9. xem quá trình train và test thử ở local
+
+### 1. xem quá trình train
 ```bash
 tensorboard --logdir result/traffic_detector 
 ```
-2. test thử
+### 2. test thử local
 ```text
 python -m src.inference -i (đường dẫn ảnh)
 python -m src.inference -v (đường dẫn video)
 ```
-3. các giải pháp của yolo cung cấp
+### 3. các giải pháp của yolo cung cấp local
 - đếm số lượng xe trong một vùng:
 ```bash
 python -m src.object_counting_yolo
@@ -181,5 +205,16 @@ python -m Heatmaps_yolo
 python -m speed_estimation_yolo
 ```
 
-
 - kết quả sẽ đc lưu trong folder results
+
+---
+
+## 10. chạy wed
+
+```bash
+python app.py
+```
+Mặc định ứng dụng chạy tại:
+
+http://127.0.0.1:5000
+
